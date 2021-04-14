@@ -9,10 +9,24 @@ final data = <TodoModel>[
 ];
 
 class TodoItem extends StatelessWidget {
+  const TodoItem({this.value, this.isChecked = false, key}) : super(key: key);
+  final String value;
+  final bool isChecked;
   @override
   Widget build(BuildContext context) {
     /// @TODO: Implement your todo item here.
-    return Text('Todo');
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Checkbox(value: isChecked, onChanged: null),
+            Text(value),
+          ],
+        ),
+        IconButton(icon: Icon(Icons.close), onPressed: () {})
+      ],
+    );
   }
 }
 
@@ -21,8 +35,14 @@ class TodoAppLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     // @TODO: Implement the layout
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Todo App'),
+      ),
       body: Center(
-        child: Text('Implement the layout'),
+        child: ListView(
+            children: data
+                .map((item) => TodoItem(value: item.title, isChecked: false))
+                .toList()),
       ),
     );
   }
