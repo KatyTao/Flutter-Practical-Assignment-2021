@@ -21,10 +21,14 @@ class TodoCubit extends Cubit<TodoState> {
   }
 
   /// @TODO: Add a todo item
-  void add(TodoModel todo) {}
+  void add(TodoModel todo) {
+    emit(state.add(todo));
+  }
 
   /// @TODO: Remove a todo item by index
-  void remove(int index) {}
+  void remove(int index) {
+    emit(state.remove(index));
+  }
 
   /// @TODO: Toggle a todo item's complete status
   void toggle(int index) {}

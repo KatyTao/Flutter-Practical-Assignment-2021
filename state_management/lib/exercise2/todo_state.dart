@@ -12,10 +12,16 @@ class TodoState extends Equatable {
 
   TodoState add(TodoModel todo) {
     /// @TODO: Finish this add method
+    final newTodo = todo.copyWith(
+        id: 'id-${data.length}', title: todo.title, completed: todo.completed);
+    return this.copyWith([...data, newTodo]);
   }
 
   TodoState remove(int index) {
     /// @TODO: Finish this [remove] method
+    this.data.removeAt(index);
+    print(data);
+    return this.copyWith([...data]);
   }
 
   TodoState toggle(int index, bool completed) {
